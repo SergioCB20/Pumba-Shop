@@ -1,0 +1,51 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+*{
+    font-family: 'Libre Franklin', sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+main{
+    padding-top: 136px;
+}
+
+header{
+    z-index: 1000;
+    width: 1536px;
+
+}
+
+#root{
+    background-color: rgb(249, 235, 235);
+}
+
+.promo-text-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    min-width: 30%;
+    height: 100%;
+}
+
+.promo-text-container p{
+    display: none;
+    width: 100%;
+    z-index: 100;
+    transition: all 1s;
+}
+
+#current-promo{
+    display: block;
+    color: white;
+    z-index: 200;
+}
+.hero-deskstop{
+   /* width: 100%;*/
+    height: 695px;
+}
