@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "../../assets/home-hero-1.jpg";
+import Boton from "./Boton";
 
 export default function HeroImage({
   imgUrl,
@@ -26,15 +27,13 @@ export default function HeroImage({
             posicionTexto === "right"
               ? "5%"
               : posicionTexto === "center"
-              ? "37%"
+              ? "400px"
               : "auto",
         }}
       >
         <h1 className="text-4xl">{titulo}</h1>
         <p className="text-xl">{contenido}</p>
-        <div className="bg-black px-4 py-8 w-fit">
-          <a href={linkBoton}>{textoBoton}</a>
-        </div>
+        <Boton linkBoton={linkBoton} textoBoton={textoBoton} />
       </div>
     </div>
   );
