@@ -11,5 +11,6 @@ router.get("/", (req,res)=>{
 router.get("/users",usersController.getUsers);
 router.get("/users/:id",usersController.getUser);
 router.post("/users",usersController.addUser);
-router.put("/users",)
+router.put("/users:id",usersController.updateUser);
+router.delete("/users:id",usersController.deleteUser);
 export default router;
