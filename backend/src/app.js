@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import cors from "cors"
 //Routes
 import userRoutes from "./routes/users.routes.js";
 
@@ -10,6 +11,10 @@ app.set("port",4000);
 
 //Middlewares (Son funciones intermedias entre la petición del cliente y la respuesta del servidor)
 app.use(morgan("dev"));//listado de las peticiones (ruta, tipo de peticion, codigo de respuesta)
+
+
+app.use(cors())
+app.use(express.json())
 
 //Cuando acceda a la ruta raiz, va a manejar la request y la response mediante un callback
 app.get("/", (req,res)=>{

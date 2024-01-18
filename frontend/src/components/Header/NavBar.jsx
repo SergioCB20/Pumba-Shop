@@ -1,5 +1,6 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.jpeg";
 
 export default function NavBar({ categorias }) {
@@ -8,7 +9,7 @@ export default function NavBar({ categorias }) {
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      alert("Aún no funciona, pronto!");
+      alert("Aún no funciona, pronto podra buscar" + searchText + "!");
     }
   };
 
@@ -44,7 +45,7 @@ export default function NavBar({ categorias }) {
         />
       </div>
       <div className="p-10">
-      <a href=""><i className="fa-solid fa-user fa-2x"></i></a>
+      <Link to="/Login"><i className="fa-solid fa-user fa-2x"></i></Link>
       </div>
     </nav>
   );

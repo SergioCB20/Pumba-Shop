@@ -4,19 +4,21 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Footer from "./components/Footer/Footer";
 
-function App() {
+const App = () => {
+  const isLoginPage = window.location.pathname === '/Login';
+
   return (
     <div className="container bg-white">
       <BrowserRouter>
-        <Header />
+        {!isLoginPage && <Header />}
         <Routes>
-            <Route path="/" element={<Home/>}></Route>
-            <Route path="/Login" element={<Login/>}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/Login" element={<Login />} />
         </Routes>
-        <Footer />
+        {!isLoginPage && <Footer />}
       </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;

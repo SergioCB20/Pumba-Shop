@@ -6,7 +6,7 @@ export default function HeaderPromo({ ofertas }) {
   const [currentClass, setCurrentClass] = useState(0);
 
   const rotateClasses = () => {
-    setCurrentClass((prevClass) => (prevClass + 1) % ofertas.length);
+    setCurrentClass((prevClass) => (prevClass + 1) % ofertas.length);//hace que el valor de currentClass ocile entre 0 y la cantidad de ofertas
   };
 
   useEffect(() => {
