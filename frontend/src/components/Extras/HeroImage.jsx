@@ -1,6 +1,6 @@
 import React from "react";
-import Image from "../../assets/home-hero-1.jpg";
-import Boton from "./Boton";
+import Image from "../../assets/home-hero-1.webp";
+import MainBoton from "./MainBoton";
 
 export default function HeroImage({
   imgUrl,
@@ -33,7 +33,7 @@ export default function HeroImage({
       >
         <h1 className="text-4xl">{titulo}</h1>
         <p className="text-xl">{contenido}</p>
-        <Boton linkBoton={linkBoton} textoBoton={textoBoton} />
+        <MainBoton linkBoton={linkBoton} textoBoton={textoBoton} />
       </div>
     </div>
   );

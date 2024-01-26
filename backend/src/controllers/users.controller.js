@@ -32,7 +32,7 @@ const verifyUser = async (req ,res)=>{
         const { body } = req;
         const connection = await getConnection();
     
-        const [rows] = await connection.query('SELECT * FROM users WHERE usuario = ? AND password = ?', [body.usuario, body.password]);
+        const [rows] = await connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [body.email, body.password]);
 
 
         if (rows) {

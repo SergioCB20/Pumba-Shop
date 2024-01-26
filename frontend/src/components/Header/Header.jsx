@@ -1,4 +1,6 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import HeaderPromo from "./Header_Promo";
 import NavBar from "./NavBar";
 
@@ -19,8 +21,16 @@ const Header = () => {
     "Niños",
     "Calzado",
   ];
+
+  const location = useLocation();
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(()=>{
+    setIsLogin(location.pathname === "/Login" || location.pathname === "/Signin");
+  },[location.pathname])
+
   return (
-    <header className="fixed inset-x-18 inset-y-0">
+    <header className={`fixed inset-x-18 inset-y-0 ${isLogin?"hidden":""}`}>
       <HeaderPromo ofertas={ofertas} />
       <NavBar categorias={categorias} />
     </header>

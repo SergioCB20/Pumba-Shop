@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/logo.jpeg";
+import Logo from "../../assets/logo.webp";
 
 export default function NavBar({ categorias }) {
   const [searchText, setSearchText] = useState("");
@@ -9,7 +9,7 @@ export default function NavBar({ categorias }) {
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      alert("Aún no funciona, pronto podra buscar" + searchText + "!");
+      alert("Aún no funciona, pronto podra buscar"+ " " +  searchText + "!");
     }
   };
 

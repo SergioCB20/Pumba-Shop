@@ -1,6 +1,6 @@
 import React from "react";
-
-export default function Boton({ linkBoton, textoBoton }) {
+//Boton principal
+export default function MainBoton({ linkBoton, textoBoton }) {
   return (
     <div className="bg-black px-4 py-2 w-fit text-white hover:text-gray-400 transition-all">
       <a href={linkBoton} className="flex gap-5">
@@ -11,7 +11,7 @@ export default function Boton({ linkBoton, textoBoton }) {
   );
 }
 
-Boton.defaultProps = {
+MainBoton.defaultProps = {
     linkBoton: "#",
     textoBoton: "TEXTO POR DEFAULT"
 }

@@ -1,67 +1,25 @@
 import React, { useState } from "react";
+import FormLogin from "./FormLogin";
+import PumbaImg from "../../assets/logo.webp"
+import LoginImg from "../../assets/imagen_login.webp"
+import { Link } from "react-router-dom";
 
 export default function Login() {
 
-    const [formData, setFormData] = useState({
-        usuario: "",
-        password: ""
-    })
-
-    const [loginError, setLoginError] = useState('');
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-    
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
-      };
-
-      const handleLogin = async (event) => {
-        event.preventDefault();
-    
-        try {
-          const response = await fetch('http://localhost:4000/users/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-          });
-
-          if (!response.ok) {
-            throw new Error('Credenciales incorrectas');
-          }
-
-          const datosUsuario = await response.json();
-
-          console.log('Usuario autenticado exitosamente');
-          console.log(datosUsuario);
-    
-          setLoginError('');
-        } catch (error) {
-          console.error('Error de autenticación:', error.message);
-          setLoginError('Credenciales incorrectas. Inténtalo de nuevo.');
-        }
-      };
-
   return (
-    <div className="flex flex-clol justify-center items-center w-screen h-screen">
-      <div className="border-black border-2 w-1/2 p-12">
-        <h1 className="text-center font-bold text-2xl">Inicia Sesión</h1>
-        <form onSubmit={handleLogin}>
-            <label>
-                Usuario
-                <input type="text" name="usuario" value={formData.usuario} onChange={handleInputChange} />
-            </label>
-            <label>
-                Contraseña
-                <input type="text" name="password" value={formData.password} onChange={handleInputChange}/>
-            </label>
-            <button type="submit">Iniciar sesión</button>
-            {loginError && <p>{loginError}</p>}
-        </form>
+    <div className="flex justify-center items-center w-screen h-screen bg-gradient-to-br from-white via-gray-300 to-black">
+      <div className="border-black border-2 max-w-6xl flex bg-white">
+        <section className="w-1/2 px-20 flex flex-col gap-10 py-5">
+          <div className="flex flex-col items-center">
+          <h1 className="font-bold text-xl w-fit">Bienvenido a</h1>
+          <Link to="/"><img src={PumbaImg} alt="Logo de Pumba" className="w-32"/></Link>
+          </div>
+          <p className="h-10 text-center text-sm text-gray-400">Inicia sesión y desbloquea todos los beneficios y funcionalidades de nuestra web oficial</p>
+          <FormLogin/>          
+        </section>
+        <section className="w-1/2">
+          <img src={LoginImg} alt="" className="w-full h-full"/>
+        </section>
       </div>
     </div>
   );

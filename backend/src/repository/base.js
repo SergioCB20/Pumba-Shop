@@ -30,9 +30,9 @@ const addOne = async (req, res, table) => {
     const { body } = req;
     const connection = await getConnection();
     const result = await connection.query(`INSERT INTO ${table} SET ?`, [body]);
-    console.log(result);
-    res.json({ success: true, message: 'Registro agregado correctamente' });
+    res.json({ success: true, message: 'Registro insertado correctamente' });
   } catch (error) {
+    console.log(error);
     res.status(500).send(error.message);
   }
 };

@@ -1,5 +1,7 @@
 import React from "react";
-import Boton from "../Extras/Boton";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import MainBoton from "../Extras/MainBoton";
 import { keyframes, styled } from "styled-components";
 
 const shine = keyframes`
@@ -19,8 +21,17 @@ const Spamer = styled.span`
 `;
 
 const Footer = () => {
+  const location = useLocation();
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    setIsLogin(
+      location.pathname === "/Login" || location.pathname === "/Signin"
+    );
+  }, [location.pathname]);
+
   return (
-    <footer>
+    <footer className={isLogin ? "hidden" : ""}>
       <div className="w-full h-32 bg-yellow-400 font-semibold text-xl flex flex-row place-items-center justify-around">
         <p className="ps-10">
           SUBSCRIBETE A
@@ -29,7 +40,7 @@ const Footer = () => {
           </Spamer>
           Y DISFRUTA DE DESCUENTOS EXCLUSIVOS
         </p>
-        <Boton textoBoton="Subscribete Ahora" />
+        <MainBoton textoBoton="Subscribete Ahora" />
       </div>
       <div className="w-full h-40 text-white bg-black font-semibold flex place-items-center justify-center">
         <p>©Copyright: Sergio Chumbimuni Bustamante - Frontend Developer</p>

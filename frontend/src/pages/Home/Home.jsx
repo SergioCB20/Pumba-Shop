@@ -1,10 +1,11 @@
 import React from "react";
 import HeroImage from "../../components/Extras/HeroImage";
-import hero1 from "../../assets/home-hero-1.jpg";
-import hero2 from "../../assets/home-hero-2.jpg";
-import hero3 from "../../assets/home-hero-3.jpg";
+import hero1 from "../../assets/home-hero-1.webp";
+import hero2 from "../../assets/home-hero-2.webp";
+import hero3 from "../../assets/home-hero-3.webp";
 
 export default function Home() {
+  
   return (
     <main className="w-full flex flex-col">
       <HeroImage
@@ -29,7 +30,9 @@ export default function Home() {
       />
       <article className="flex flex-row p-10 gap-10 tracking-wider text-justify">
         <section>
-          <h2 className="font-bold text-4xl pb-2">Historia, pasión y deporte</h2>
+          <h2 className="font-bold text-4xl pb-2">
+            Historia, pasión y deporte
+          </h2>
           <p>
             En el vibrante corazón de la ciudad, donde la pasión por el deporte
             y la moda se fusiona, nació "Pumba", una tienda de ropa deportiva
