@@ -11,6 +11,18 @@ export default {
     container: {
       center: true,
     },
+    screens: {
+      'sm': '640px',
+      'md': '810px',
+      'ilg': '933px',
+      'lg': '1096px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
+    translate: {
+      'hiddenLeft': '-100%',
+      'hiddenRight':'100%'
+    }
   },
   plugins: [],
 };

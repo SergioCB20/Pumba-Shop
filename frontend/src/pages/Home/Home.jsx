@@ -1,11 +1,10 @@
 import React from "react";
-import HeroImage from "../../components/Extras/HeroImage";
+import HeroImage from "../../components/Reusables/HeroImage";
 import hero1 from "../../assets/home-hero-1.webp";
 import hero2 from "../../assets/home-hero-2.webp";
 import hero3 from "../../assets/home-hero-3.webp";
 
 export default function Home() {
-  
   return (
     <main className="w-full flex flex-col">
       <HeroImage

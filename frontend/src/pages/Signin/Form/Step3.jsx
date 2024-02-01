@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormContext } from "./FormContext";
-import Input from "../../../components/Extras/Input";
+import Input from "../../../components/Reusables/Input";
 
 export default function Step3() {
   const { formData, handleInputChange, prevStep, errors } = useFormContext();

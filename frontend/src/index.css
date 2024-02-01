@@ -11,13 +11,18 @@
     margin: 0;
 }
 
-main{
-    padding-top: 136px;
+body {
+    overflow-x: hidden;
+    overscroll-behavior: none;
+  }
+
+main {
+    padding-top: 135px;
 }
 
 header{
     z-index: 1000;
-    width: 1536px;
+    width: 100%;
     height: 135px;
 }
 
@@ -25,7 +30,10 @@ header{
     background-color: rgb(249, 235, 235);
 }
 
-.hero-deskstop{
-   /* width: 100%;*/
-    height: 900px;
+
+@media (width < 833px) {
+    main{
+        padding-top: 100px;
+    }
 }
+

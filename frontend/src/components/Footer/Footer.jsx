@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import MainBoton from "../Extras/MainBoton";
+import MainBoton from "../Reusables/MainBoton";
 import { keyframes, styled } from "styled-components";
 
 const shine = keyframes`

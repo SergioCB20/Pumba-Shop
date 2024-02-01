@@ -1,5 +1,4 @@
 import React from "react";
-import "./header.css"
 import { useEffect, useState } from "react";
 
 export default function HeaderPromo({ ofertas }) {
@@ -15,12 +14,11 @@ export default function HeaderPromo({ ofertas }) {
   }, []);
   return (
     <div className="w-full bg-black h-10 flex justify-center font-semibold">
-      <div className="promo-text-container">
+      <div className="flex justify-center items-center min-w-80 h-full relative">
         {ofertas.map((oferta, idx) => (
           <p
             key={idx}
-            className="absolute py-2 px-2 text-center"
-            id={currentClass === idx ? "current-promo" : ""}
+            className={`absolute py-2 px-2 text-center transition-all text-white ${currentClass === idx ? "block" : "hidden"}`}
           >
             {oferta}
           </p>

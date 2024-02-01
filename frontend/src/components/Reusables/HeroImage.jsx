@@ -12,8 +12,8 @@ export default function HeroImage({
 }) {
   return (
     <div
-      className="relative w-full hero-deskstop bg-cover bg-center text-white flex flex-col ps-10 font-extrabold"
-      style={{ backgroundImage: `url(${imgUrl})` }}
+      className="relative w-full bg-cover bg-center text-white flex flex-col ps-10 font-extrabold"
+      style={{ backgroundImage: `url(${imgUrl})`,height:"900px" }}
     >
       {/* HeroContainer */}
       <div className="absolute top-0 left-0 w-full h-full bg-sombreado_white"></div>

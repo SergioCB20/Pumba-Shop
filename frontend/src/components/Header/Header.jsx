@@ -30,7 +30,7 @@ const Header = () => {
   },[location.pathname])
 
   return (
-    <header className={`fixed inset-x-18 inset-y-0 ${isLogin?"hidden":""}`}>
+    <header className={`fixed inset-x-0 inset-y-0 w-screen ${isLogin?"hidden":""}`}>
       <HeaderPromo ofertas={ofertas} />
       <NavBar categorias={categorias} />
     </header>
