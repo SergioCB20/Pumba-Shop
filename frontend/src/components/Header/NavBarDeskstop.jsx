@@ -35,9 +35,9 @@ export default function NavBarDeskstop({handleSearch, handleChange,categorias,se
         <Link to="/Login">
           <i className="fa-solid fa-user fa-2x "></i>
         </Link>
-        <button type="button">
+        <Link to="/Cart">
           <i className="fa-solid fa-cart-shopping fa-2x"></i>
-        </button>
+        </Link>
       </div>
     </div>
   </div>

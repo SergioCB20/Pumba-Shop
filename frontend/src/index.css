@@ -31,7 +31,7 @@ header{
 }
 
 
-@media (width < 833px) {
+@media (width < 933px) {
     main{
         padding-top: 100px;
     }

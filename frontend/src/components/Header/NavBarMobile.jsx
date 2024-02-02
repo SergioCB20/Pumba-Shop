@@ -11,7 +11,8 @@ export default function NavBarMobile({
 }) {
 
     const [isOpenSideBar, setIsOpenSideBar] = useState(false);
-
+    const [isOpenSearch, setIsOpenSearch] = useState(false);
+    const [isOpenCart, setIsOpenCart] = useState(false);
 
     const handleOpenSideBar = ()=>{
         setIsOpenSideBar(true);
@@ -19,6 +20,21 @@ export default function NavBarMobile({
     const handleCloseSideBar = ()=>{
         setIsOpenSideBar(false);
     }
+
+    const handleOpenSearch = ()=>{
+        setIsOpenSearch(true);
+    }
+    const handleCloseSearch = ()=>{
+        setIsOpenSearch(false);
+    }
+    
+    const handleOpenCart = ()=>{
+        setIsOpenCart(true);
+    }
+    const handleCloseCart = ()=>{
+        setIsOpenCart(false);
+    }
+
   return (
     <div className="flex flex-row justify-around w-full ilg:hidden">
       <button type="button" onClick={handleOpenSideBar}>
@@ -31,12 +47,12 @@ export default function NavBarMobile({
         <Link to="/Login">
           <i className="fa-solid fa-user fa-2x "></i>
         </Link>
-        <button type="button">
+        <button type="button" onClick={handleOpenSearch}>
           <i className="fa-solid fa-magnifying-glass fa-2x"></i>
         </button>
-        <button type="button">
+        <Link to="/Cart">
           <i className="fa-solid fa-cart-shopping fa-2x"></i>
-        </button>
+        </Link>
       </div>
       {/* SideBar */}
       <div className={`absolute inset-0 h-screen w-screen transition-all ${isOpenSideBar?"translate-x-0":"translate-x-hiddenLeft"}`}>
@@ -54,6 +70,23 @@ export default function NavBarMobile({
         </ul>
       </div>
       {/* Buscador */}
+      <div className={`absolute right-0 top-0 h-screen w-screen bg-white transition-all ${isOpenSearch?"translate-x-0":"translate-x-hiddenRight"}`}>
+      <div className="border-b-2 border-black h-10 flex rounded-md flex-row pt-3 text-sm bg-slate-300">
+      <button type="button" onClick={handleCloseSearch} className="px-4">
+        <i class="fa-solid fa-chevron-left "></i>
+      </button>
+        <input
+          type="text"
+          name="buscador"
+          placeholder="Busca algo..."
+          id="buscador"
+          onKeyDown={handleSearch}
+          value={searchText}
+          onChange={handleChange}
+          className="focus:outline-none focus:border-none w-full pb-1 bg-slate-300"
+        />
+      </div>
+      </div>
       {/* Carrito de compras */}
     </div>
   );

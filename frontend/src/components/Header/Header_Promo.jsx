@@ -13,8 +13,8 @@ export default function HeaderPromo({ ofertas }) {
     return () => clearInterval(intervalId);
   }, []);
   return (
-    <div className="w-full bg-black h-10 flex justify-center font-semibold">
-      <div className="flex justify-center items-center min-w-80 h-full relative">
+    <div className="w-full bg-black h-10 flex justify-center font-semibold ilg:text-sm">
+      <div className="flex justify-center items-center min-w-80 w-full h-full relative">
         {ofertas.map((oferta, idx) => (
           <p
             key={idx}

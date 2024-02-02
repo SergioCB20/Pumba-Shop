@@ -7,6 +7,9 @@ export default {
         sombreado_white: "rgba(255, 255, 255, 0.3)",
         sombreado_black: "rgba(0,0,0,0.5)",
       },
+      height:{
+        'hero':'900px'
+      }
     },
     container: {
       center: true,
@@ -22,7 +25,7 @@ export default {
     translate: {
       'hiddenLeft': '-100%',
       'hiddenRight':'100%'
-    }
+    },
   },
   plugins: [],
 };

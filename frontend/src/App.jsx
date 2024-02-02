@@ -6,6 +6,7 @@ import Login from "./pages/Login/Login";
 import Signin from "./pages/Signin/Signin";
 import Footer from "./components/Footer/Footer";
 import Cart from "./pages/Cart/Cart";
+import PumbaPlus from "./pages/PumbaPlus/PumbaPlus";
 
 const App = () => {
   useEffect(() => {
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/Login" element={<Login />} />
           <Route path="/Signin" element={<Signin/>}/>
           <Route path="/Cart" element={<Cart/>}/>
+          <Route path="/PumbaPlus" element={<PumbaPlus/>}/>
         </Routes>
         <Footer />
       </BrowserRouter>

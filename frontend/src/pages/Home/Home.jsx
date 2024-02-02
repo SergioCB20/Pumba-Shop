@@ -12,6 +12,7 @@ export default function Home() {
         titulo="Aprovecha nuestras promociones 😉"
         contenido="¡Descuentos por tiempo limitado en calzados, ropa y más!"
         textoBoton="IR A LAS PROMOCIONES ⭐"
+        posicionTexto="left"
       />
       <HeroImage
         imgUrl={hero2}
@@ -25,11 +26,10 @@ export default function Home() {
         titulo="Dale un vistazo a nuestra ropa deportiva 😎"
         contenido="¡Camisetas, pantalones y más!"
         textoBoton="IR A LA TIENDA ⭐"
-        posicionTexto="center"
       />
-      <article className="flex flex-row p-10 gap-10 tracking-wider text-justify">
+      <article className="flex flex-col p-10 gap-10 tracking-wider text-justify lg:flex-row lg:text-sm">
         <section>
-          <h2 className="font-bold text-4xl pb-2">
+          <h2 className="font-bold text-2xl pb-2 ilg:text-4xl">
             Historia, pasión y deporte
           </h2>
           <p>
@@ -54,7 +54,7 @@ export default function Home() {
           </p>
         </section>
         <section>
-          <h2 className="font-bold text-4xl pb-2">¡No somos una copia!</h2>
+          <h2 className="font-bold text-2xl pb-2 lg:text-4xl">¡No somos una copia!</h2>
           <p>
             La tienda Pumba se propuso seguir los pasos de marcas icónicas como
             Puma, adoptando un enfoque holístico hacia el deporte y la moda.
