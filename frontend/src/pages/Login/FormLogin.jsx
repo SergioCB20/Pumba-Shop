@@ -63,7 +63,7 @@ export default function FormLogin() {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className="focus:outline-none ps-4 ms-4 "
+            className="focus:outline-none ps-2 ms-2 lg:ps-4 lg:ms-4 "
             placeholder="Ingrese su correo electrónico"
           />
         </label>
@@ -74,7 +74,7 @@ export default function FormLogin() {
             name="password"
             value={formData.password}
             placeholder="Ingrese su contraseña"
-            className="focus:outline-none ps-4 ms-4"
+            className="focus:outline-none ps-2 ms-2 lg:ps-4 lg:ms-4"
             onChange={handleInputChange}
           />
           <button type="button" onClick={handleShowPass} className="absolute right-5">{showPass?<i class="fa-solid fa-eye-slash"/>:<i class="fa-solid fa-eye"/>}</button>

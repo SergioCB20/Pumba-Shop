@@ -33,14 +33,14 @@ export default function Step2() {
         <button
           type="button"
           onClick={prevStep}
-          className="w-fit self-center p-10 border-2 border-black bg-slate-400 py-2 rounded-lg hover:bg-slate-500 transition-all duration-300"
+          className="w-fit self-center p-5 lg:px-10 border-2 border-black bg-slate-400 py-2 rounded-lg hover:bg-slate-500 transition-all duration-300"
         >
           Anterior
         </button>
         <button
           type="button"
           onClick={nextStep}
-          className="w-fit self-center p-10 border-2 border-black bg-slate-400 py-2 rounded-lg hover:bg-slate-500 transition-all duration-300"
+          className="w-fit self-center p-5 lg:px-10 border-2 border-black bg-slate-400 py-2 rounded-lg hover:bg-slate-500 transition-all duration-300"
         >
           Siguiente
         </button>
