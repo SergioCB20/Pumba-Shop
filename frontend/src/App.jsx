@@ -7,31 +7,74 @@ import Signin from "./pages/Signin/Signin";
 import Footer from "./components/Footer/Footer";
 import Cart from "./pages/Cart/Cart";
 import PumbaPlus from "./pages/PumbaPlus/PumbaPlus";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import { useUserContext } from "./context/UserContext";
+import { useProductosContext } from "./context/ProductosContext";
 
 const App = () => {
+  const { setUser } = useUserContext();
+  const { setProductos } = useProductosContext();
+
   useEffect(() => {
-    const disableTouchScroll = (event) => {
-      if (event.touches.length > 1) {
-        event.preventDefault();
+    function decodeToken(token) {
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+          .join("")
+      );
+      return JSON.parse(jsonPayload);
+    }
+
+    function updateUserData() {
+      const token = localStorage.getItem("token");
+      const decodedToken = decodeToken(token);
+      setUser(decodedToken.usuario);
+    }
+
+    // Llamar a la función al montar el componente
+    updateUserData();
+
+    // Llamar a la función cada vez que el token cambie
+    const tokenChangeSubscription = setInterval(() => {
+      updateUserData();
+    }, 1000);
+
+    // Limpiar el intervalo cuando el componente se desmonta o cuando el token cambia
+    return () => clearInterval(tokenChangeSubscription);
+  }, [setUser]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/productos');
+        if (!response.ok) {
+          throw new Error('Error al cargar productos');
+        }
+        const data = await response.json();
+        console.log(data)
+        setProductos(data);
+      } catch (error) {
+        console.error('Error:', error);
       }
     };
 
-    document.addEventListener('touchmove', disableTouchScroll, { passive: false });
-
-    return () => {
-      document.removeEventListener('touchmove', disableTouchScroll);
-    };
+    fetchProducts();
   }, []);
+
   return (
     <div className="w-full bg-white text-xs relative">
       <BrowserRouter>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/:productId" element={<ProductDetails/>}/>
           <Route path="/Login" element={<Login />} />
-          <Route path="/Signin" element={<Signin/>}/>
-          <Route path="/Cart" element={<Cart/>}/>
-          <Route path="/PumbaPlus" element={<PumbaPlus/>}/>
+          <Route path="/Signin" element={<Signin />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/PumbaPlus" element={<PumbaPlus />} />
         </Routes>
         <Footer />
       </BrowserRouter>

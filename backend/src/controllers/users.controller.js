@@ -1,5 +1,7 @@
 import methods from "../repository/base.js";
 import getConnection from "../database/database.js";
+import jwt from "jsonwebtoken";
+import config from "../config.js";
 
 const table = "Users";
 
@@ -10,7 +12,8 @@ const getUsers = async (req,res)=>{
 }
 
 const getUser = async (req,res)=>{
-    await methods.getOne(req,res,table);
+    const id = "id_usuario"
+    await methods.getOne(req,res,table,id);
 }
 
 const addUser = async (req,res) =>{
@@ -34,11 +37,18 @@ const verifyUser = async (req ,res)=>{
     
         const [rows] = await connection.query('SELECT * FROM users WHERE email = ? AND password = ?', [body.email, body.password]);
 
-
         if (rows) {
           const usuario = rows;
-          console.log(usuario)
-          res.status(200).json(usuario);
+          delete usuario.password
+          jwt.sign({usuario},config.secretcode,(err,token)=>{
+            if (err) {
+              console.error('Error al firmar el token:', err);
+              res.status(500).send(err.message);
+          } else {
+            console.log(token)
+              res.status(200).json({ token });
+          }
+          })
         } else {
           console.log('No se encontraron resultados');
           res.status(401).json({ success: false, message: 'Credenciales incorrectas' });
@@ -48,6 +58,7 @@ const verifyUser = async (req ,res)=>{
         res.status(500).send(error.message);
       }
 }
+
 
 export default {
     getUsers,

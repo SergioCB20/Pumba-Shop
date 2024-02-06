@@ -7,8 +7,14 @@ export default {
         sombreado_white: "rgba(255, 255, 255, 0.3)",
         sombreado_black: "rgba(0,0,0,0.5)",
       },
+      maxWidth:{
+        '30':'7.2rem'
+      },
       height:{
         'hero':'900px'
+      },
+      inset:{
+        '30':'7.1rem'
       }
     },
     container: {

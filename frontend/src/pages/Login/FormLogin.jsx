@@ -43,9 +43,10 @@ export default function FormLogin() {
         throw new Error("Credenciales incorrectas");
       }
 
-      const datosUsuario = await response.json();
+      const respuestaServer = await response.json();
       console.log("Usuario autenticado exitosamente");
-      console.log(datosUsuario);
+      console.log('Token recibido en el cliente:', respuestaServer.token);
+      localStorage.setItem('token',respuestaServer.token)
       setLoginError("");
       navigate("/");
 
@@ -56,25 +57,25 @@ export default function FormLogin() {
   };
   return (
       <form onSubmit={handleLogin} className="flex flex-col gap-10 pb-8 relative">
-        <label className="border-2 border-black p-2 ps-5">
+        <label className="flex flex-row border-2 border-black p-2">
           <i className="fa-regular fa-circle-user"></i>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className="focus:outline-none ps-2 ms-2 lg:ps-4 lg:ms-4 "
+            className="focus:outline-none ps-1 ms-2 lg:ps-4 lg:ms-4 "
             placeholder="Ingrese su correo electrónico"
           />
         </label>
-        <label className="border-2 border-black p-2 ps-5 relative">
+        <label className=" flex flex-row border-2 border-black p-2 relative">
           <i className="fa-solid fa-lock"></i>
           <input
             type={showPass?"text":"password"}
             name="password"
             value={formData.password}
             placeholder="Ingrese su contraseña"
-            className="focus:outline-none ps-2 ms-2 lg:ps-4 lg:ms-4"
+            className="focus:outline-none ps-1 ms-2  lg:ps-4 lg:ms-4"
             onChange={handleInputChange}
           />
           <button type="button" onClick={handleShowPass} className="absolute right-5">{showPass?<i class="fa-solid fa-eye-slash"/>:<i class="fa-solid fa-eye"/>}</button>

@@ -11,12 +11,12 @@ const getAll = async (req, res, table) => {
   }
 };
 
-const getOne = async (req, res, table) => {
+const getOne = async (req, res, table, idTable) => {
   console.log(req.params);
   const { id } = req.params;
   try {
     const connection = await getConnection();
-    const result = await connection.query(`SELECT * FROM ${table} WHERE id_usuario = ?`, [id]);
+    const result = await connection.query(`SELECT * FROM ${table} WHERE ${idTable} = ?`, [id]);
     console.log(result);
     res.json(result);
   } catch (error) {

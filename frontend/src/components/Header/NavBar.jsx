@@ -1,9 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NavBarDeskstop from "./NavBarDeskstop";
 import NavBarMobile from "./NavBarMobile";
 
-export default function NavBar({ categorias }) {
+export default function NavBar({ categorias}) {
   const [searchText, setSearchText] = useState("");
 
   const handleSearch = (e) => {
