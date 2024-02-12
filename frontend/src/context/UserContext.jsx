@@ -8,10 +8,16 @@ export const useUserContext = () => {
 
 export const UserProvider = ({children})=>{
     const [user, setUser] = useState({})
+    const [cart, setCart] = useState(() => {
+        const storedCart = localStorage.getItem('cart');
+        return storedCart ? JSON.parse(storedCart) : [];
+      });
 
     const contextValue = {
         user,
-        setUser
+        setUser,
+        cart,
+        setCart
     }
 
     return(

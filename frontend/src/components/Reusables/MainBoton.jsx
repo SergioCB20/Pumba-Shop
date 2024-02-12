@@ -1,25 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
-//Boton principal
-export default function MainBoton({ linkBoton, textoBoton }) {
+
+export default function MainBoton({ linkBoton, textoBoton, handleClick }) {
+  const isInternalLink = linkBoton.startsWith("/");
+  const isExternalLink = !isInternalLink && linkBoton !== "#";
+
+  const renderLink = () => {
+    if (isInternalLink) {
+      return (
+        <Link to={linkBoton}>
+          {renderButtonContent()}
+        </Link>
+      );
+    } else if (isExternalLink) {
+      return (
+        <a href={linkBoton}>
+          {renderButtonContent()}
+        </a>
+      );
+    } else {
+      return (
+        <div onClick={handleClick}>
+          {renderButtonContent()}
+        </div>
+      );
+    }
+  };
+
+  const renderButtonContent = () => (
+    <div className="flex items-center gap-5">
+      <p className="text-xs lg:text-base">{textoBoton.toUpperCase()}</p>
+      <i className="fa-solid fa-arrow-right"></i>
+    </div>
+  );
+
   return (
     <div className="bg-black px-4 py-2 w-fit text-white hover:text-gray-400 transition-all">
-      {linkBoton.startsWith("/") && (
-        <Link to={linkBoton}>
-          <div className="flex gap-5">
-            <p className="w-full h-full text-xs lg:text-base">{textoBoton}</p>
-            <i className="fa-solid fa-arrow-right pt-1"></i>
-          </div>
-        </Link>
-      )}
-      {!linkBoton.startsWith("/") && (
-        <a href={linkBoton}>
-          <div className="flex gap-5">
-            <p className="w-full h-full">{textoBoton}</p>
-            <i className="fa-solid fa-arrow-right pt-1"></i>
-          </div>
-        </a>
-      )}
+      {renderLink()}
     </div>
   );
 }
@@ -28,3 +45,4 @@ MainBoton.defaultProps = {
   linkBoton: "#",
   textoBoton: "TEXTO POR DEFAULT",
 };
+

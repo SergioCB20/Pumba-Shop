@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 import Logo from "../../assets/logo.webp";
 import { Link } from "react-router-dom";
@@ -7,19 +7,28 @@ import { useProductosContext } from "../../context/ProductosContext";
 
 export default function NavBarMobile({
   handleSearch,
-  handleChange,
   categorias,
-  searchText,
 }) {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
   const [isOpenSearch, setIsOpenSearch] = useState(false);
+  const [productosMostrados, setProductosMostrados] = useState([])
   const { user } = useUserContext();
   const {productos} = useProductosContext();
+  const [searchText, setSearchText] = useState("");
 
-  const productosFiltrados = productos.filter((producto) =>
-    producto.nombre.toLowerCase().includes(searchText.toLowerCase())
-  );
+  const handleChange = (e) => {
+    const searchTextValue = e.target.value;
+    setSearchText(searchTextValue);
+    
+    let productosFiltrados = productos.filter((producto) =>
+      producto.nombre.toLowerCase().includes(searchTextValue.toLowerCase())
+    );
+    
+    let mostrar = productosFiltrados.slice(0, 5);
+    setProductosMostrados(mostrar);
+  };
 
+  
   const handleOpenSideBar = () => {
     setIsOpenSideBar(true);
   };
@@ -44,10 +53,12 @@ export default function NavBarMobile({
           <img src={Logo} alt="logo_pumba" className="w-full" />
         </Link>
       </div>
-      <div className="ps-2 py-5 flex flex-row gap-10">
+      <div className="ms-2 py-5 flex flex-row gap-5">
         <Link to="/Login">
+          <div className="flex flex-col items-center">
           <i className="fa-solid fa-user fa-2x "></i>
-          {user ? <p className="text-xs">{user.name}</p> : <p> </p>}
+          {user ? <p className="text-xs ">{user.name}</p> : <p> </p>}
+          </div>
         </Link>
         <button type="button" onClick={handleOpenSearch}>
           <i className="fa-solid fa-magnifying-glass fa-2x"></i>
@@ -101,9 +112,9 @@ export default function NavBarMobile({
           />
         </div>
         <ul className="ps-5">
-        {searchText && productosFiltrados.map((producto) => (
+        {searchText && productosMostrados.length > 0 && productosMostrados.map((producto) => (
           <li key={producto.ID_producto} className="w-full text-base">
-          <Link to={`/${producto.ID_producto}`}>
+          <Link to={`/tienda/${producto.ID_producto}`} onClick={()=>setIsOpenSearch(false)}>
             <div className="w-full flex flex-row gap-14">
               <img src={producto.url_img} alt="" className="h-6" />
               <p className="max-w-full">{producto.nombre}</p>

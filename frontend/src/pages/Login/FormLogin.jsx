@@ -47,6 +47,7 @@ export default function FormLogin() {
       console.log("Usuario autenticado exitosamente");
       console.log('Token recibido en el cliente:', respuestaServer.token);
       localStorage.setItem('token',respuestaServer.token)
+      localStorage.setItem('cart',[]);
       setLoginError("");
       navigate("/");
 

@@ -4,10 +4,9 @@ const getAll = async (req, res, table) => {
   try {
     const connection = await getConnection();
     const result = await connection.query(`SELECT * FROM ${table}`);
-    console.log(result);
-    res.json(result);
+   return result;
   } catch (error) {
-    res.status(500).send(error.message);
+    return false;
   }
 };
 
@@ -17,10 +16,9 @@ const getOne = async (req, res, table, idTable) => {
   try {
     const connection = await getConnection();
     const result = await connection.query(`SELECT * FROM ${table} WHERE ${idTable} = ?`, [id]);
-    console.log(result);
-    res.json(result);
+    return result;
   } catch (error) {
-    res.status(500).send(error.message);
+    return false;
   }
 };
 
@@ -30,10 +28,10 @@ const addOne = async (req, res, table) => {
     const { body } = req;
     const connection = await getConnection();
     const result = await connection.query(`INSERT INTO ${table} SET ?`, [body]);
-    res.json({ success: true, message: 'Registro insertado correctamente' });
+    return result;
   } catch (error) {
-    console.log(error);
     res.status(500).send(error.message);
+    return false;
   }
 };
 
@@ -43,7 +41,6 @@ const updateOne = async (req, res, table) => {
       const { body } = req;
       const connection = await getConnection();
       const result = await connection.query(`UPDATE ${table} SET ? WHERE id_usuario = ?`, [body, id]);
-      
       if (result.affectedRows === 0) {
         return res.status(404).json({ success: false, message: 'Registro no encontrado' });
       }
@@ -60,7 +57,6 @@ const updateOne = async (req, res, table) => {
       const { id } = req.params;
       const connection = await getConnection();
       const result = await connection.query(`DELETE FROM ${table} WHERE id_usuario = ?`, [id]);
-      
       if (result.affectedRows === 0) {
         return res.status(404).json({ success: false, message: 'Registro no encontrado' });
       }

@@ -7,6 +7,7 @@ import Signin from "./pages/Signin/Signin";
 import Footer from "./components/Footer/Footer";
 import Cart from "./pages/Cart/Cart";
 import PumbaPlus from "./pages/PumbaPlus/PumbaPlus";
+import ThanksPage from "./pages/ThanksCLI/ThanksPage";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import { useUserContext } from "./context/UserContext";
 import { useProductosContext } from "./context/ProductosContext";
@@ -70,11 +71,13 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/:productId" element={<ProductDetails/>}/>
+          <Route path="/tienda" element={<ProductDetails/>}/>
+          <Route path="/tienda/:productId" element={<ProductDetails/>}/>
           <Route path="/Login" element={<Login />} />
           <Route path="/Signin" element={<Signin />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/PumbaPlus" element={<PumbaPlus />} />
+          <Route path="/Thanks" element={<ThanksPage/>}/>
         </Routes>
         <Footer />
       </BrowserRouter>

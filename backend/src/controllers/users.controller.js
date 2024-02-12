@@ -8,16 +8,19 @@ const table = "Users";
 //CRUD
 
 const getUsers = async (req,res)=>{
-    await methods.getAll(req,res,table);
+    const result = await methods.getAll(req,res,table);
+    result?res.json(result):res.status(500).send(error.message);
 }
 
 const getUser = async (req,res)=>{
     const id = "id_usuario"
-    await methods.getOne(req,res,table,id);
+    const result = await methods.getOne(req,res,table,id);
+    result?res.json(result):res.status(500);
 }
 
 const addUser = async (req,res) =>{
-    await methods.addOne(req,res,table);
+    const result = await methods.addOne(req,res,table);
+    result?res.json({ success: true, message: 'Registro insertado correctamente' }):res.status(500);
 }
 
 const updateUser = async (req,res) =>{

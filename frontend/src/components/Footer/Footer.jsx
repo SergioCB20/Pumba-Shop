@@ -34,7 +34,7 @@ const Footer = () => {
   return (
     <footer className={isLogin ? "hidden" : ""}>
       <div className="w-full h-15 lg:h-32 bg-yellow-400 font-semibold text-xs lg:text-xl flex flex-row place-items-center justify-around">
-        <p className="ps-10">
+        <p className="ps-5">
           SUBSCRIBETE A
           <Spamer>
             <Link to="/PumbaPlus"> PUMBAPLUS </Link>
