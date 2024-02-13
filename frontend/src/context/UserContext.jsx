@@ -9,7 +9,8 @@ export const useUserContext = () => {
 export const UserProvider = ({children})=>{
     const [user, setUser] = useState({})
     const [cart, setCart] = useState(() => {
-        const storedCart = localStorage.getItem('cart');
+        const token = localStorage.getItem('token');
+        const storedCart = localStorage.getItem(`cart-${token}`);
         return storedCart ? JSON.parse(storedCart) : [];
       });
 

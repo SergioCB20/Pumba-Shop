@@ -20,7 +20,8 @@ export default function ProductDetails() {
   const handleClick = ()=>{
     if (producto) {
       const carritoActualizado = [...cart, producto]; 
-      localStorage.setItem('cart', JSON.stringify(carritoActualizado));
+      const token = localStorage.getItem('token');
+      localStorage.setItem(`cart-${token}`, JSON.stringify(carritoActualizado));
       setCart(carritoActualizado);
       console.log("producto agregado al carrito")
       console.log(cart)

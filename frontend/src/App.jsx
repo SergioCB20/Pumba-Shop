@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
@@ -13,7 +13,7 @@ import { useUserContext } from "./context/UserContext";
 import { useProductosContext } from "./context/ProductosContext";
 
 const App = () => {
-  const { setUser } = useUserContext();
+  const { user, setUser } = useUserContext();
   const { setProductos } = useProductosContext();
 
   useEffect(() => {
@@ -35,16 +35,8 @@ const App = () => {
       setUser(decodedToken.usuario);
     }
 
-    // Llamar a la función al montar el componente
     updateUserData();
 
-    // Llamar a la función cada vez que el token cambie
-    const tokenChangeSubscription = setInterval(() => {
-      updateUserData();
-    }, 1000);
-
-    // Limpiar el intervalo cuando el componente se desmonta o cuando el token cambia
-    return () => clearInterval(tokenChangeSubscription);
   }, [setUser]);
 
   useEffect(() => {
@@ -61,9 +53,9 @@ const App = () => {
         console.error('Error:', error);
       }
     };
-
     fetchProducts();
   }, []);
+
 
   return (
     <div className="w-full bg-white text-xs relative">

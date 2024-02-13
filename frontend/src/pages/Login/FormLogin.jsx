@@ -47,10 +47,11 @@ export default function FormLogin() {
       console.log("Usuario autenticado exitosamente");
       console.log('Token recibido en el cliente:', respuestaServer.token);
       localStorage.setItem('token',respuestaServer.token)
-      localStorage.setItem('cart',[]);
+      localStorage.setItem(`cart-${respuestaServer.token}`,[]);
       setLoginError("");
       navigate("/");
-
+      window.location.reload()
+      
     } catch (error) {
       console.error("Error de autenticación:", error.message);
       setLoginError("Credenciales incorrectas. Inténtalo de nuevo.");
