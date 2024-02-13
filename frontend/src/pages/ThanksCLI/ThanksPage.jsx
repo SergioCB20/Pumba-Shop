@@ -4,6 +4,8 @@ import { useUserContext } from "../../context/UserContext";
 export default function ThanksPage() {
   const {setCart} = useUserContext()
   useEffect(()=>{
+    const token = localStorage.getItem("token");
+    localStorage.setItem(`cart-${token}`, []);
     setCart([]);
   },[])
 
@@ -14,11 +16,11 @@ export default function ThanksPage() {
         Al ser de nuestros primeros clientes{" "}
         <b>(no porque no seamos una tienda real)</b>{" "}
         No va a tener que pagar nada. <br />
-        !Así que espere su producto, que le puede llegar en cualquier día!
+        !Así que espere su pedido, que le puede llegar en cualquier día y hora!
       </p>
       <MainBoton
         linkBoton="/"
-        textoBoton="Siga explorando nuestros producto!"
+        textoBoton="Siga explorando nuestros productos!"
       />
     </main>
   );

@@ -20,7 +20,7 @@ export default function MainBoton({ linkBoton, textoBoton, handleClick }) {
       );
     } else {
       return (
-        <div onClick={handleClick}>
+        <div className="cursor-pointer" onClick={handleClick}>
           {renderButtonContent()}
         </div>
       );
