@@ -2,10 +2,10 @@ import React, { useEffect , useState, useRef } from "react";
 import Logo from "../../assets/logo.webp";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 import { useProductosContext } from "../../context/ProductosContext";
 
 export default function NavBarDeskstop({
-  handleSearch,
   categorias,
 }) {
   const { user } = useUserContext();
@@ -14,6 +14,14 @@ export default function NavBarDeskstop({
   const [productosMostrados, setProductosMostrados] = useState([])
   const [searchText, setSearchText] = useState("");
   const resultsRef = useRef(null);
+  const navigate = useNavigate()
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      navigate("/Shop?type=text&filter="+e.target.value)
+    }
+  };
 
   const handleChange = (e) => {
     const searchTextValue = e.target.value;
@@ -53,7 +61,7 @@ export default function NavBarDeskstop({
         <div className="flex flex-row justify-around font-medium">
           {categorias.map((categoria, idx) => (
             <li key={idx} className="hover:font-bold">
-              <a href="#">{categoria.toUpperCase()}</a>
+              <Link to={categoria.url}>{categoria.nombre.toUpperCase()}</Link>
             </li>
           ))}
         </div>
@@ -76,7 +84,7 @@ export default function NavBarDeskstop({
           <ul ref={resultsRef} className="flex flex-col gap-2 absolute top-30 right-40 lg:right-52 max-w-30 bg-white border border-t-0 border-black mt-1 p-2 text-xs lg:text-sm lg:max-w-52">
             {productosMostrados.map((producto) => (
               <li key={producto.ID_producto} className="w-full">
-                <Link to={`/tienda/${producto.ID_producto}`} onClick={()=>setShowResults(false)}>
+                <Link to={`/Shop/${producto.ID_producto}`} onClick={()=>setShowResults(false)}>
                   <div className="w-full flex flex-row gap-5">
                     <img src={producto.url_img} alt="" className="h-6" />
                     <p className="max-w-32">{producto.nombre} - {producto.nombreMarca}</p>

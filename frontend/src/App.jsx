@@ -5,10 +5,12 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Signin from "./pages/Signin/Signin";
 import Footer from "./components/Footer/Footer";
+import Shop from "./pages/Shop/Shop";
 import Cart from "./pages/Cart/Cart";
 import PumbaPlus from "./pages/PumbaPlus/PumbaPlus";
 import ThanksPage from "./pages/ThanksCLI/ThanksPage";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import Promotions from "./pages/Promotions/Promotions";
 import { useUserContext } from "./context/UserContext";
 import { useProductosContext } from "./context/ProductosContext";
 
@@ -63,8 +65,9 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/tienda" element={<ProductDetails/>}/>
-          <Route path="/tienda/:productId" element={<ProductDetails/>}/>
+          <Route path="/Shop" element={<Shop/>}/>
+          <Route path="/Shop/:productId" element={<ProductDetails/>}/>
+          <Route path="/Shop/Promotions" element={<Promotions/>}/>
           <Route path="/Login" element={<Login />} />
           <Route path="/Signin" element={<Signin />} />
           <Route path="/Cart" element={<Cart />} />

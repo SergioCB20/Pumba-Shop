@@ -10,9 +10,9 @@ export default function ThanksPage() {
   },[])
 
   return (
-    <main className="flex flex-col gap-6 justify-center items-center w-screen h-screen">
+    <main className="flex flex-col gap-6 justify-center items-center w-screen h-screen md:text-base">
       <h1 className="text-3xl font-extrabold">¡Gracias por su compra!</h1>
-      <p className="w-3/4 text-justify">
+      <p className="w-3/4 text-justify md:w-fit">
         Al ser de nuestros primeros clientes{" "}
         <b>(no porque no seamos una tienda real)</b>{" "}
         No va a tener que pagar nada. <br />

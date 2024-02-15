@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from "react";
 import React from "react";
 import Logo from "../../assets/logo.webp";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { useProductosContext } from "../../context/ProductosContext";
 
 export default function NavBarMobile({
-  handleSearch,
   categorias,
 }) {
   const [isOpenSideBar, setIsOpenSideBar] = useState(false);
@@ -15,6 +15,15 @@ export default function NavBarMobile({
   const { user } = useUserContext();
   const {productos} = useProductosContext();
   const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate()
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleCloseSearch();
+      navigate("/Shop?type=text&filter="+e.target.value)
+    }
+  };
 
   const handleChange = (e) => {
     const searchTextValue = e.target.value;
@@ -82,11 +91,9 @@ export default function NavBarMobile({
         </button>
         <ul className="flex flex-col justify-around items-center h-full bg-white">
           {categorias.map((categoria, idx) => (
-            <a href="#" key={idx}>
-              <li className="font-bold text-center">
-                {categoria.toUpperCase()}
+              <li className="font-bold text-center" key={idx}>
+              <Link to={categoria.url} onClick={handleCloseSideBar}>{categoria.nombre.toUpperCase()}</Link>
               </li>
-            </a>
           ))}
         </ul>
       </div>
@@ -114,7 +121,7 @@ export default function NavBarMobile({
         <ul className="ps-5">
         {searchText && productosMostrados.length > 0 && productosMostrados.map((producto) => (
           <li key={producto.ID_producto} className="w-full text-base">
-          <Link to={`/tienda/${producto.ID_producto}`} onClick={()=>setIsOpenSearch(false)}>
+          <Link to={`/Shop/${producto.ID_producto}`} onClick={()=>setIsOpenSearch(false)}>
             <div className="w-full flex flex-row gap-14">
               <img src={producto.url_img} alt="" className="h-6" />
               <p className="max-w-full">{producto.nombre}</p>

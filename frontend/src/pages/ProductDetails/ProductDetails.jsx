@@ -10,6 +10,8 @@ export default function ProductDetails() {
   const { productos } = useProductosContext();
   const [producto, setProducto] = useState(null);
   const [tallaSelected, setTallaSelected] = useState(null);
+  const [errorMessage, setErrorMesage] = useState("")
+  const [confirmationMessage, setConfirmationMessage] = useState("");
   const tallaKids = ["US-4","US-5","US-6","US-7","US-8"]
   const tallaNoKids = ["US-9","US-10","US-11","US-12","US-13"]
 
@@ -39,12 +41,15 @@ export default function ProductDetails() {
     }
 
     if (producto && tallaSelected) {
+      setErrorMesage("");
       const productoCarrito = {producto, tamanio: tallaSelected, cantidad: 1, descuento: 0} 
       const carritoActualizado = actualizarCarrito(productoCarrito);
       const token = localStorage.getItem("token");
       localStorage.setItem(`cart-${token}`, JSON.stringify(carritoActualizado));
       setCart(carritoActualizado);
-      console.log("Producto agregado al carrito");
+      setConfirmationMessage("Producto agregado al carrito");
+    }else if(!tallaSelected){
+      setErrorMesage("Tienes que elegir una talla para tu producto");
     }
   };
 
@@ -54,27 +59,27 @@ export default function ProductDetails() {
 
   return (
     <main className="flex flex-col w-full">
-      <div className="flex flex-col p-5 gap-5">
+      <div className="flex items-center relative p-10 h-screen">
         {producto ? (
-          <>
-            <div className="flex w-full justify-center">
+          <div className="flex flex-col gap-5 md:flex-row">
+            <div className="flex w-full justify-center md:w-1/2">
               <img
                 src={producto.url_img}
                 alt={`imagen del producto ${producto.nombre}`}
-                className="w-1/2"
+                className="w-1/2 md:w-3/4"
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col md:text-base md:ps-32">
               <p className="text-red-700 font-semibold">
                 {producto.nombreMarca}
               </p>
-              <h1 className="text-lg font-bold">{producto.nombre}</h1>
+              <h1 className="text-lg font-bold md:text-xl">{producto.nombre}</h1>
               <p className="text-sm mt-2 mb-5">$ {producto.precio}</p>
-              <ul className="grid grid-cols-4 text-center border border-black">
+              <ul className="grid grid-cols-4 text-center border border-black mb-10">
                 {producto.genero === "niños" && tallaKids.map((size) => (
                   <li
                     key={size}
-                    className={`cursor-pointer border-e-2 border-b-2 ${
+                    className={`cursor-pointer border-e-2 border-b-2 border-black  ${
                       tallaSelected === size ? "bg-gray-300" : ""
                     }`}
                     onClick={() => handleSelectSize(size)}
@@ -85,7 +90,7 @@ export default function ProductDetails() {
                 {producto.genero != "niños" && tallaNoKids.map((size) => (
                   <li
                     key={size}
-                    className={`cursor-pointer border-e-2 border-b-2 ${
+                    className={`cursor-pointer border-e-2 border-b-2 border-black ${
                       tallaSelected === size ? "bg-gray-300" : ""
                     }`}
                     onClick={() => handleSelectSize(size)}
@@ -94,9 +99,15 @@ export default function ProductDetails() {
                   </li>
                 ))}
               </ul>
+              <MainBoton textoBoton="Agregar al carrito" handleClick={handleClick} />
+              {errorMessage && (
+                <p className="absolute bottom-60 md:bottom-64 text-red-600">{errorMessage}</p>
+              )}
+               {confirmationMessage && (
+                <p className="absolute bottom-60 md:bottom-64 text-green-600">{confirmationMessage}</p>
+              )}
             </div>
-            <MainBoton textoBoton="Agregar al carrito" handleClick={handleClick} />
-          </>
+          </div>
         ) : (
           <p>Cargando producto...</p>
         )}

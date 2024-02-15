@@ -14,12 +14,30 @@ const Header = () => {
   ];
 
   const categorias = [
-    "Promociones",
-    "Vestimenta",
-    "Hombres",
-    "Mujeres",
-    "Niños",
-    "Calzado",
+    {
+      nombre:"Promociones",
+      url:"/Shop/Promotions"
+    },
+    {
+      nombre:"Camisetas",
+      url:"/Shop?type=cat&filter=Camisetas"
+    },
+    {
+      nombre:"Hombres",
+      url:"/Shop?type=gen&filter=hombre"
+    },
+    {
+      nombre:"Mujeres",
+      url:"/Shop?type=gen&filter=mujer"
+    },
+    {
+      nombre:"Niños",
+      url:"/Shop?type=gen&filter=niños"
+    },
+    {
+      nombre:"Calzado",
+      url:"/Shop?type=cat&filter=Zapatillas"
+    },
   ];
 
   const location = useLocation();

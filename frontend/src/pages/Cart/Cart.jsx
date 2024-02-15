@@ -7,7 +7,7 @@ export default function Cart() {
   const { user,cart, setCart } = useUserContext();
   return (
     <main>
-      {cart.length > 0 && <CartDisplay cart={cart} nombre={user.name}/>}
+      {cart.length > 0 && <CartDisplay cart={cart} nombre={user.name} setCart={setCart}/>}
       {cart.length === 0 && (
       <div className='flex flex-col gap-3 justify-center items-center h-screen'>
         <h1 className='font-bold text-3xl'>Tu carrito está vacío</h1>
