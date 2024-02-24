@@ -15,6 +15,10 @@ export default {
       },
       inset:{
         '30':'7.1rem'
+      },
+      translate: {
+        'hiddenLeft': '-100%',
+        'hiddenRight':'100%'
       }
     },
     container: {
@@ -27,10 +31,6 @@ export default {
       'lg': '1096px',
       'xl': '1280px',
       '2xl': '1536px',
-    },
-    translate: {
-      'hiddenLeft': '-100%',
-      'hiddenRight':'100%'
     },
   },
   plugins: [],

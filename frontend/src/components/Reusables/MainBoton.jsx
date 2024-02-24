@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useRef} from "react";
+import { Player } from "@lordicon/react";
 import { Link } from "react-router-dom";
+
+import ARROW_I from "../../animated_icons/arrowIcon.json";
 
 export default function MainBoton({ linkBoton, textoBoton, handleClick }) {
   const isInternalLink = linkBoton.startsWith("/");
   const isExternalLink = !isInternalLink && linkBoton !== "#";
+  const arrowIconRef = useRef();
 
   const renderLink = () => {
     if (isInternalLink) {
@@ -28,9 +32,11 @@ export default function MainBoton({ linkBoton, textoBoton, handleClick }) {
   };
 
   const renderButtonContent = () => (
-    <div className="flex items-center gap-5">
+    <div className="flex items-center gap-5 pt-1" onMouseEnter={() => arrowIconRef.current.playFromBeginning()}>
       <p className="text-xs lg:text-base">{textoBoton.toUpperCase()}</p>
-      <i className="fa-solid fa-arrow-right"></i>
+      <div>
+      <Player ref={arrowIconRef} size={35} icon={ARROW_I} colorize="#ffffff" />
+      </div>
     </div>
   );
 

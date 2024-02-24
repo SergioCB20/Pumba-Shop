@@ -6,11 +6,10 @@ import NavBar from "./NavBar";
 
 const Header = () => {
   const ofertas = [
-    "50% de descuento en zapatillas seleccionadas",
-    "2x1 en camisetas de selecciones nacionales de fútbol",
-    "Obtén tu cupón de descuento para tu compra",
-    "30% de descuento en polos para niños",
-    "Disfruta de más beneficios adquiriendo PumbaPLUS",
+    "Las mejores marcas en un mismo lugar",
+    "¡No somos una copia!",
+    "En realidad sí 😉",
+    "Disfruta de articulos exclusivos con PumbaPLUS",
   ];
 
   const categorias = [

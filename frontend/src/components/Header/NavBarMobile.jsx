@@ -1,10 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import React from "react";
 import Logo from "../../assets/logo.webp";
+import { Player } from "@lordicon/react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { useProductosContext } from "../../context/ProductosContext";
+
+import SEARCH_I from "../../animated_icons/searchIcon.json";
+import BAG_I from "../../animated_icons/bagIcon.json";
+import AVATAR_I from "../../animated_icons/avatarIcon.json";
 
 export default function NavBarMobile({
   categorias,
@@ -16,6 +21,9 @@ export default function NavBarMobile({
   const {productos} = useProductosContext();
   const [searchText, setSearchText] = useState("");
   const navigate = useNavigate()
+  const searchIconRef = useRef(null);
+  const bagIconRef = useRef(null);
+  const avatarIconRef = useRef(null);
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
@@ -64,17 +72,19 @@ export default function NavBarMobile({
       </div>
       <div className="ms-2 py-5 flex flex-row gap-5">
         <Link to="/Login">
-          <div className="flex flex-col items-center">
-          <i className="fa-solid fa-user fa-2x "></i>
-          {user ? <p className="text-xs ">{user.name}</p> : <p> </p>}
+          <div className="flex flex-col items-center -my-2" onMouseEnter={() => avatarIconRef.current.playFromBeginning()}>
+          <Player ref={avatarIconRef} size={35} icon={AVATAR_I} />
+          {user ? <p className="text-xs -my-1 ">{user.name}</p> : <p> </p>}
           </div>
         </Link>
-        <button type="button" onClick={handleOpenSearch}>
-          <i className="fa-solid fa-magnifying-glass fa-2x"></i>
+        <button type="button" className="-my-2" onClick={handleOpenSearch} onMouseEnter={() => searchIconRef.current.playFromBeginning()}>
+            <Player ref={searchIconRef} size={30} icon={SEARCH_I} />
         </button>
-        <Link to="/Cart">
-          <i className="fa-solid fa-cart-shopping fa-2x"></i>
-        </Link>
+        <div className="-translate-y-1" onMouseEnter={() => bagIconRef.current.playFromBeginning()}>
+            <Link to="/Cart">
+              <Player ref={bagIconRef} size={30} icon={BAG_I} />
+            </Link>
+          </div>
       </div>
       {/* SideBar */}
       <div
@@ -131,7 +141,6 @@ export default function NavBarMobile({
         ))}
       </ul>
       </div>
-      {/* Carrito de compras */}
     </div>
   );
 }

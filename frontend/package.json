@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lordicon/react": "^1.4.1",
     "autoprefixer": "^10.4.16",
+    "lottie-web": "^5.12.2",
     "postcss-cli": "^11.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

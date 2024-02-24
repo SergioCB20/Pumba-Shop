@@ -13,6 +13,7 @@ export default function Home() {
         contenido="¡Descuentos por tiempo limitado en calzados, ropa y más!"
         textoBoton="IR A LAS PROMOCIONES ⭐"
         posicionTexto="left"
+        linkBoton="/Shop/Promotions"
       />
       <HeroImage
         imgUrl={hero2}
@@ -20,12 +21,14 @@ export default function Home() {
         contenido="¡Las zapatillas de tus jugadores favoritos en un mismo lugar!"
         textoBoton="IR A LA TIENDA ⭐"
         posicionTexto="right"
+        linkBoton="/Shop?type=cat&filter=Zapatillas"
       />
       <HeroImage
         imgUrl={hero3}
-        titulo="Dale un vistazo a nuestra ropa deportiva 😎"
-        contenido="¡Camisetas, pantalones y más!"
+        titulo="Dale un vistazo a nuestras camisetas deportiva 😎"
+        contenido="¡Camisetas de primera calidad!"
         textoBoton="IR A LA TIENDA ⭐"
+        linkBoton="/Shop?type=cat&filter=Camisetas"
       />
       <article className="flex flex-col p-10 gap-10 tracking-wider text-justify lg:flex-row lg:text-sm">
         <section>
