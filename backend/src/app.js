@@ -8,7 +8,7 @@ import productosRoutes from "./routes/productos.routes.js";
 const app = express();
 
 //Settings
-app.set("port",4000);
+app.set("port",process.env.PORT || 3001);
 
 //Middlewares (Son funciones intermedias entre la petición del cliente y la respuesta del servidor)
 app.use(morgan("dev"));//listado de las peticiones (ruta, tipo de peticion, codigo de respuesta)
